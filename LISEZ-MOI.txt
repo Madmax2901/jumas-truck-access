@@ -1,0 +1,7 @@
+JUMAS Truck Access PWA 0.3.4 — publication GitHub Pages
+
+Dans GitHub, créer un dépôt PUBLIC jumas-truck-access. Extraire le ZIP puis envoyer les cinq fichiers index.html, manifest.webmanifest, sw.js, icon-192.png, icon-512.png à la racine du dépôt. Ne pas envoyer le ZIP seul. Settings > Pages > Deploy from a branch > main > /(root) > Save. Après publication, ouvrir l'adresse indiquée par GitHub dans Chrome Android puis menu ⋮ > Installer / Ajouter à l'écran d'accueil.
+
+Pour une mise à jour, remplacer les fichiers modifiés au même emplacement, en conservant l'adresse. Le service worker utilise le réseau d'abord pour les fichiers de l'application et un cache local si indisponibles. Changer VERSION dans sw.js à chaque version. Les cartes et API restent en ligne, jamais mises en cache par ce service worker. Les données locales existantes de l'ancien fichier HTML doivent être transférées via Infos > Sauvegarde (copie du JSON puis restauration sur la nouvelle adresse). Ne jamais publier ce JSON ou la clé Gemini. La clé doit être ressaisie après fermeture ou rechargement ; le client web n'est pas un coffre-fort. Les mises à jour de code doivent être de confiance. Une utilisation hébergée ne rend pas l'API Gemini gratuite. Pas d'authentification ni de serveur de données personnelles.
+
+Le code public est accessible à tous ; les notes et favoris restent locaux. Le code hébergé peut être modifié par toute personne disposant d'un droit d'écriture au dépôt. Ne partager ni jeton GitHub ni clé Gemini.

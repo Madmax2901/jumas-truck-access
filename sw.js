@@ -1,0 +1,10 @@
+const VERSION='0.3.4';
+const PREFIX='jumas-pwa-'+self.registration.scope+'-';
+const CACHE=PREFIX+VERSION;
+const SCOPE=self.registration.scope;
+const SHELL=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'].map(x=>new URL(x,SCOPE).href);
+self.addEventListener('install',event=>{event.waitUntil((async()=>{const c=await caches.open(CACHE);await c.addAll(SHELL.map(u=>new Request(u,{cache:'reload'})));await self.skipWaiting()})())});
+self.addEventListener('activate',event=>{event.waitUntil((async()=>{for(const k of await caches.keys())if(k.startsWith(PREFIX)&&k!==CACHE)await caches.delete(k);await self.clients.claim()})())});
+self.addEventListener('fetch',event=>{const req=event.request;const u=new URL(req.url);if(req.method!=='GET'||u.origin!==self.location.origin||!SHELL.includes(u.href))return;
+ event.respondWith((async()=>{const c=await caches.open(CACHE);try{const r=await fetch(req,{cache:'no-cache'});if(r.ok){await c.put(req,r.clone());return r}throw Error('HTTP '+r.status)}catch(e){return await c.match(req)||Response.error()}})());
+});
