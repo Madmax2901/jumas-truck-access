@@ -1,4 +1,4 @@
-const VERSION='0.3.13';
+const VERSION='0.4.0';
 const PREFIX='jumas-pwa-'+self.registration.scope+'-';
 const CACHE=PREFIX+VERSION;
 const SCOPE=self.registration.scope;
